@@ -7,3 +7,4 @@ result *= 10;
 
 alert(userInput)
 alert(result)
+
