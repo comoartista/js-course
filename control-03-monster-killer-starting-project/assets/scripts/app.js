@@ -3,13 +3,29 @@ const STRONG_ATTACK_VALUE = 14;
 const MONSTER_ATTACK_VALUE = 14;
 const HEAL_VALUE = 20;
 
-let chosenMaxLife = 100;
+const MODE_ATTACK = 'ATTACK';
+const MODE_STRONG_ATTACK = 'STRONG_ATTACK';
+
+
+const enteredValue = prompt('Maximum life for you and the moster', '100');
+
+let chosenMaxLife = parseInt(enteredValue);
+
+if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+    chosenMaxLife = 100;
+}
+
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
 
+function reset() {
+    currentMonsterHealth = chosenMaxLife;
+    currentPlayerHealth = chosenMaxLife;
+    resetGame(chosenMaxLife);
+}
 
 function endRound() {
     const initialPlayerHealth = currentPlayerHealth;
@@ -24,42 +40,34 @@ function endRound() {
         alert('Bonus life safed you');
     }
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        alert('You won')
+        alert('You won');
+        reset();
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-        alert('You lost')
+        alert('You lost');
+        reset();
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
-        alert('You have a draw')
+        alert('You have a draw');
+        reset();
     }
 }
 
 function attackMonster(mode) {
     let maxDamage;
-    if (mode === 'ATTACK') {
+    if (mode === MODE_ATTACK) {
         maxDamage = ATTACK_VALUE;
-    } else {
+    } else if (mode === MODE_STRONG_ATTACK){
         maxDamage = STRONG_ATTACK_VALUE;
     }
     const damage = dealMonsterDamage(maxDamage);
     currentMonsterHealth -= damage;
-
-    const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
-    currentPlayerHealth -= playerDamage;
-
-    if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        alert('You won')
-    } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-        alert('You lost')
-    } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
-        alert('You have a draw')
-    }
     endRound();
 }
 function attackHandler() {
-   attackMonster('ATTACK');
+   attackMonster(MODE_ATTACK);
 }
 
 function strongAttackHandler() {
-    attackMonster('STRONG_ATTACK');
+    attackMonster(MODE_STRONG_ATTACK);
 }
 
 function healPlayerHandler() {
