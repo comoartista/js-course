@@ -149,6 +149,7 @@ function attackMonster(mode) {
  
     endRound();
 }
+
 function attackHandler() {
    attackMonster(MODE_ATTACK);
 }
@@ -178,6 +179,9 @@ function healPlayerHandler() {
 }
 
 function printLogHandler () {
+    for (let i = 0; i < 3; i++) {
+ 
+    }
     console.log(battleLog);
 }
 
