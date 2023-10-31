@@ -67,3 +67,12 @@ userIds.add(-5);
 userIds.add(-5); 
 
 console.log(userIds);
+
+let hourData = [0.47, 3.52, 1.34, 1.40, 3.38, 2.5];
+
+hourData.reduce((prev, cur) => {
+    return  sum = prev + cur
+    
+}, 0)
+
+console.log(sum);
