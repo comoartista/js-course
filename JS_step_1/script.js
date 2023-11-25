@@ -1,23 +1,15 @@
-'use strict';
+const someString = 'This is some strange string';
 
-const numberOfFilms = 7;
-const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false,
+function reverse(str) {
+//     const arr = str.split('').reverse().join("").toString();
+    
+//     return arr
+
+let newstrm = ''
+for(let i = str.length-1; i >= 0; i--) {
+    newstrm += str[i]
+}
+return str
 }
 
-const a = prompt('Один из последних просмотренных фильмов?');
-const b = +prompt('На сколько оцените его?');
-
-const c = prompt('Один из последних просмотренных фильмов?');
-const d = +prompt('На сколько оцените его?');
-
-
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
-
-
-console.log(personalMovieDB);
+console.log(reverse(someString));
